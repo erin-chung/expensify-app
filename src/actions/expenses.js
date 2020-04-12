@@ -1,11 +1,12 @@
 import uuid from 'react-uuid'
+import moment from 'moment'
 
 //ADD_EXPENSE action generator
 export const addExpense = ({ 
     description = '', 
     note = '', 
     amount =0, 
-    createdAt=0 
+    createdAt=0
 } = {}) => ({
     type: 'ADD_EXPENSE',
     expense: {

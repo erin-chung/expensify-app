@@ -3,8 +3,6 @@ import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
 import 'react-dates/lib/css/_datepicker.css'
 
-const now = moment()
-console.log(now.format('MMM Do, YYYY'))
 
 //using class because we will be using local component state for form
 export default class ExpenseForm extends React.Component {

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux' //to access props
 import { addExpense } from '../actions/expenses'
 import ExpenseForm from './ExpenseForm'
+import moment from 'moment'
 
 const AddExpensePage = (props)=>(
     <div>
