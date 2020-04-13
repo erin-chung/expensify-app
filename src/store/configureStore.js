@@ -13,7 +13,8 @@ export default () => {
             filters: filtersReducer,
             auth: authReducer
         }),
-        composeEnhancers(applyMiddleware(thunk))
+        //composeEnhancers(applyMiddleware(thunk)) -- did not work without extension
+        applyMiddleware(thunk)
     )
     return store
 }
