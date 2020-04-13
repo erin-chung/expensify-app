@@ -1,22 +1,30 @@
 import uuid from 'react-uuid'
-import moment from 'moment'
+import database from '../db/firebase'
 
 //ADD_EXPENSE action generator
-export const addExpense = ({ 
-    description = '', 
-    note = '', 
-    amount =0, 
-    createdAt=0
-} = {}) => ({
+export const addExpense = (expense) => ({
     type: 'ADD_EXPENSE',
-    expense: {
-        id: uuid(),
-        description,
-        note,
-        amount,
-        createdAt
-    }
+    expense
 })
+
+export const startAddExpense = (expenseData = {}) => {
+    return (dispatch)=>{
+        const {
+            description = '', 
+            note = '', 
+            amount =0, 
+            createdAt=0
+        } = expenseData //destructuring for code below
+        const expense = { description, note, amount, createdAt }
+        //Save to database and push to redux store
+        database.ref('expenses').push(expense).then((ref)=>{
+            dispatch(addExpense({
+                id: ref.key,
+                ...expense
+            }))
+        })
+    }
+}
 
 //REMOVE_EXPENSE action generator
 export const removeExpense = ({ id } = {}) => ({
